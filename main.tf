@@ -1,4 +1,14 @@
 //  Cert based authentication is recommended 
+terraform {
+  required_providers {
+    aci = {
+      source  = "CiscoDevNet/aci"
+      version = "2.2.0"
+    }
+  }
+}
+
+
 provider "aci" {
   username = var.apic_user 
   password = var.apic_password
