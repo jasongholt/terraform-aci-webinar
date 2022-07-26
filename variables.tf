@@ -1,9 +1,9 @@
 variable "apic_user" {
-    default = ""
-    }
+  default = ""
+}
 variable "apic_password" {
-    default = ""
-    }
+  default = ""
+}
 variable "apic_url" {
-    default = ""
-    }
+  default = ""
+}
