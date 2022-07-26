@@ -17,19 +17,19 @@ provider "aci" {
 }
 
 module "fabric-policies" {
-  source  = "app.terraform.io/TerraformACI/fabric-policies/aci"
+  source  = "app.terraform.io/jasongholt-demos/fabric-policies/aci"
   version = ">=0.0.1"
 }
 
 module vlan1 {
-  source  = "app.terraform.io/TerraformACI/epg-vlan/aci"
+  source  = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   version = ">=0.0.1"
   tenant_name     = "ACMEA-tenant"
   gateway_address = "10.10.1.1/24"
 }
 
 module vlan2 {
-  source  = "app.terraform.io/TerraformACI/epg-vlan/aci"
+  source  = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   version = ">=0.0.1"
   tenant_name     = "ACMEB-tenant"
   gateway_address = "10.10.2.1/24"
@@ -38,7 +38,7 @@ module vlan2 {
 
 
 module vlan3 {
-  source  = "app.terraform.io/TerraformACI/epg-vlan/aci"
+  source  = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   version = ">=0.0.1"
   tenant_name     = "ACMEC-tenant"
   gateway_address = "10.10.4.1/24"
