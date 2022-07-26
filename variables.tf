@@ -1,15 +1,9 @@
-variable "aci_url" {
-  type = string
-}
-
-variable "aci_username" {
-  type = string
-}
-
-variable "private_key_name" {
-  default = "terraform"
-  type = string
-}
-variable "private_key_data" {
-  type = string
-}
+variable "apic_user" {
+    default = ""
+    }
+variable "apic_password" {
+    default = ""
+    }
+variable "apic_url" {
+    default = ""
+    }
