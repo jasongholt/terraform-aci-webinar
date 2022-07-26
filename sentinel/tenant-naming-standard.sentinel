@@ -1,0 +1,53 @@
+# This policy enforces a basic tenant naming standard to ACI tenant resources. 
+
+import "tfplan"
+import "strings"
+
+// find resource instances in all modules 
+find_resources_from_plan = func(type) {
+    resources = {}
+    for tfplan.module_paths as path {
+        for tfplan.module(path).resources[type] else {} as name, instances {
+            for instances as index, r {
+                # Get the address of the resource instance
+                if length(path) == 0 {
+                    # root module
+                    address = type + "." + name + "[" + string(index) + "]"
+                } else {
+                    # non-root module
+                    address = "module." + strings.join(path, ".module.") + "." +
+                              type + "." + name + "[" + string(index) + "]"
+                }
+                # Add the instance to resources, setting the key to the address
+                resources[address] = r
+            }
+        }
+    }
+    return resources
+}
+
+validate_tenant_names = func(tenants) {
+    validated = true
+    for tenants as address, r {
+        # Skip resource instances that are being destroyed
+        # to avoid unnecessary policy violations.
+        if r.destroy and not r.requires_new {
+            print("Skipping resource", r.diff.name.old, "that is being destroyed.")
+            continue
+        }
+        if r.applied.name matches "^[A-Z]{5}-tenant" {
+            continue
+        } else {
+            print(r.applied.name, "does not meet naming standards. Tenant names must match ^[A-Z]{5}-tenant")
+            validated = false
+        }
+    }
+    return validated
+}
+
+all_tenants = find_resources_from_plan("aci_tenant")
+
+main = rule {
+  validate_tenant_names(all_tenants)
+
+}
