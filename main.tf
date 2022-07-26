@@ -1,11 +1,9 @@
 //  Cert based authentication is recommended 
 provider "aci" {
-  username = var.aci_username
-  private_key = var.private_key_data
-  cert_name = var.private_key_name
-  url      = var.aci_url
+  username = var.apic_user 
+  password = var.apic_password
+  url      = var.apic_url
   insecure = true
-  version  = "0.2.1"
 }
 
 module "fabric-policies" {
