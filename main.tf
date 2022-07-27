@@ -25,6 +25,7 @@ module "vlan1" {
   source = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   tenant_name     = "ACMEA-tenant"
   gateway_address = "10.10.1.1/24"
+  unicast_route   = "yes"
 }
 
 module "vlan2" {
@@ -32,6 +33,15 @@ module "vlan2" {
   version         = ">=0.0.1"
   tenant_name     = "ACMEB-tenant"
   gateway_address = "10.10.2.1/24"
+  unicast_route   = "yes"
+}
+
+
+module "vlan3" {
+  source  = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
+  version         = ">=0.0.1"
+  tenant_name     = "ACMEC-tenant"
+  gateway_address = "10.10.4.1/24"
   unicast_route   = "yes"
 }
 
