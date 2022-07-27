@@ -23,6 +23,7 @@ module "fabric-policies" {
 
 module "vlan1" {
   source = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
+  # source  = "../terraform-aci-epg-vlan/"
   tenant_name     = "ACMEA-tenant"
   gateway_address = "10.10.1.1/24"
   unicast_route   = "yes"
