@@ -39,7 +39,7 @@ module "vlan2" {
 module "vlan3" {
   source = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   version         = ">=0.0.1"
-  tenant_name     = "demo-tenant"
+  tenant_name     = "ACMEC-tenant"
   gateway_address = "10.10.2.1/24"
   unicast_route   = "yes"
 }
