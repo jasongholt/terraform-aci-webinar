@@ -39,7 +39,7 @@ module "vlan2" {
   unicast_route   = "yes"
 }
 
-  module "vlan2" {
+  module "vlan3" {
   source = "app.terraform.io/jasongholt-demos/epg-vlan/aci"
   #source  = "../terraform-aci-epg-vlan/"
   version         = ">=0.0.1"
